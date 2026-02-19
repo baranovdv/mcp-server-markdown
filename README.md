@@ -1,0 +1,106 @@
+# mcp-server-markdown
+
+[![npm version](https://img.shields.io/npm/v/mcp-server-markdown.svg)](https://www.npmjs.com/package/mcp-server-markdown)
+[![npm downloads](https://img.shields.io/npm/dm/mcp-server-markdown.svg)](https://www.npmjs.com/package/mcp-server-markdown)
+[![CI](https://github.com/ofershap/mcp-server-markdown/actions/workflows/ci.yml/badge.svg)](https://github.com/ofershap/mcp-server-markdown/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Search, navigate, and extract content from markdown files — full-text search, section extraction, heading navigation, code block discovery, and frontmatter parsing.
+
+```bash
+npx mcp-server-markdown
+```
+
+> Works with Claude Desktop, Cursor, VS Code Copilot, and any MCP client. Zero auth — reads local markdown files.
+
+![Demo](assets/demo.gif)
+
+## Tools
+
+| Tool               | What it does                                                               |
+| ------------------ | -------------------------------------------------------------------------- |
+| `list_files`       | List all .md files in a directory recursively (sorted alphabetically)      |
+| `search_docs`      | Full-text search across all .md files (case-insensitive, up to 50 results) |
+| `get_section`      | Extract a section by heading until the next heading of same/higher level   |
+| `list_headings`    | List all headings (#–######) as a table of contents                        |
+| `find_code_blocks` | Find fenced code blocks, optionally filter by language (e.g. typescript)   |
+| `get_frontmatter`  | Parse YAML frontmatter metadata (key-value) at the start of a file         |
+
+## Quick Start
+
+### Cursor
+
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "markdown": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-markdown"]
+    }
+  }
+}
+```
+
+### Claude Desktop
+
+Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "markdown": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-markdown"]
+    }
+  }
+}
+```
+
+### VS Code
+
+Add to user settings or `.vscode/mcp.json`:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "markdown": {
+        "command": "npx",
+        "args": ["-y", "mcp-server-markdown"]
+      }
+    }
+  }
+}
+```
+
+## Examples
+
+- "Search all docs in ./docs for mentions of 'authentication'"
+- "Show me the 'API Reference' section from README.md"
+- "List all headings in CONTRIBUTING.md"
+- "Find all TypeScript code blocks in the docs"
+- "What's the frontmatter metadata in this file?"
+
+## Development
+
+```bash
+git clone https://github.com/ofershap/mcp-server-markdown.git
+cd mcp-server-markdown
+npm install
+npm test
+npm run build
+```
+
+## Author
+
+**Ofer Shapira**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-ofershap-blue?logo=linkedin)](https://linkedin.com/in/ofershap)
+[![GitHub](https://img.shields.io/badge/GitHub-ofershap-black?logo=github)](https://github.com/ofershap)
+
+## License
+
+MIT © 2026 Ofer Shapira
