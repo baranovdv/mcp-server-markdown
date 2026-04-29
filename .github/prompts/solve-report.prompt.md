@@ -26,12 +26,16 @@ Use this prompt when `/solve` reaches a terminal state.
    - A table with `phase`, `check`, `scope`, `result`, `details`, and `artifact`
    - Include focused checks before broad checks
    - Always include lightweight security evidence
-6. `Review Findings`
+6. `Integration Evidence`
+   - Required whenever the task adds or changes a named tool, endpoint, command, or other public entrypoint
+   - Name the user-facing surface, the owning wiring or registration file, and the evidence that proves the entrypoint is usable
+   - If no executable harness exists, say so explicitly and record the direct verification or residual risk
+7. `Review Findings`
    - Summarize the isolated review outcome as `high`, `medium`, `low`, or `none`
    - High- and medium-severity findings must either be repaired or shown again under `Blockers`
-7. `Fallbacks Used`
+8. `Fallbacks Used`
    - Any repository-local fallback taken because a preferred tool, subagent, or search path failed
-8. `Blockers`
+9. `Blockers`
    - Concrete blockers only
    - If none, say `none`
 
@@ -39,6 +43,7 @@ Use this prompt when `/solve` reaches a terminal state.
 
 - Keep the report concise and evidence-based.
 - Do not claim success without listing the checks that justify it.
+- Do not claim success for a new or changed public entrypoint without naming the integration surface and the evidence that it is wired correctly.
 - If a check could not run, record `not-run` with the reason.
 - If review produced no findings, say so explicitly instead of omitting the section.
 - If the run ended blocked, explain the exact point of failure and the next safe action.

@@ -11,29 +11,34 @@ Use this skill whenever `/solve` changes behavior, public contracts, parsing rul
 
 - Add or update automated tests near the changed behavior.
 - Cover the primary path, edge cases, and one regression risk when the task changes behavior.
+- When the task adds or changes a public entrypoint, include at least one focused check that exercises or directly verifies that entrypoint rather than only testing private helpers.
 - Prefer focused test execution before broad repository validation.
 
 ## Workflow
 
 1. Identify the changed slice and the nearest existing tests.
-2. Extend current tests before creating new files unless a new surface has no nearby coverage.
-3. Add assertions for user-visible behavior, edge cases, and regression risks implied by the task brief.
-4. Run the narrowest useful check first.
-5. If the first focused check fails because of a local defect, hand the result back to `/solve` for same-slice repair and rerun that check.
-6. Report uncovered risks when the repository lacks an executable harness for them.
+2. Identify whether the task also changes a public entrypoint such as a tool, endpoint, CLI command, or exported contract.
+3. Extend current tests before creating new files unless a new surface has no nearby coverage.
+4. Add assertions for user-visible behavior, edge cases, and regression risks implied by the task brief.
+5. For public-entrypoint tasks, prefer a focused check that proves the entrypoint wiring is usable; if no executable harness exists, require a direct verification of the owning wiring change and report the missing harness as residual risk.
+6. Run the narrowest useful check first.
+7. If the first focused check fails because of a local defect, hand the result back to `/solve` for same-slice repair and rerun that check.
+8. Report uncovered risks when the repository lacks an executable harness for them.
 
 ## Guardrails
 
 - Do not add placeholder tests or tautological assertions.
 - Do not overfit to the open task's exact sample values.
 - Prefer behavior-level assertions over implementation detail checks.
+- Do not treat helper-only tests as complete validation when the task's success depends on registration, routing, or other public-surface wiring.
 - Keep validation evidence specific enough that the final report can name what passed and what remains risky.
 
 ## Focused Validation Order
 
 1. The narrowest changed-slice test or rehearsal available.
-2. The narrowest matching typecheck, lint, or build step.
-3. Broader repository validation only after the local slice is stable.
+2. A focused public-entrypoint check when the task adds or changes a tool, endpoint, command, or other named interface.
+3. The narrowest matching typecheck, lint, or build step.
+4. Broader repository validation only after the local slice is stable.
 
 ## Edge-Case Prompts
 
