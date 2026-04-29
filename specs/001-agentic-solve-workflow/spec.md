@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "You need to implement agentic workflow that is described in Rules(fixed).md. You can use task.md as an example of the input for the agentic workflow. You have to use AI agentic workflow best practices like using Subagents for Code Review, using separate skill for tests creation, and explicitly highlight prompt creation best practices."
 
+## Clarifications
+
+### Session 2026-04-29
+
+- Q: What retry boundary should the workflow use when validation or review finds a local, repairable issue? → A: Up to 2 repair attempts per failing slice, rerunning focused validation after each.
+- Q: Which review findings should block completion of a `/solve` run? → A: High- and medium-severity findings block completion; low-severity findings are advisory and may be reported without blocking.
+- Q: What minimum security gate should the workflow run before completion? → A: Always run lightweight changed-slice security checks, and run broader dependency or secret checks only when the task touches those surfaces.
+- Q: What planning artifact must the workflow leave behind for a non-trivial run? → A: A lightweight repository-local plan artifact is required for every non-trivial run, and the workflow may expand it into richer Spec Kit artifacts when deeper planning is warranted.
+- Q: May the workflow rely on external services or integrations to complete core task execution? → A: External services may be used opportunistically, but core task execution must have a repository-local fallback path.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - One-Command Task Execution (Priority: P1)
@@ -74,17 +84,20 @@ As a maintainer of the repository workflow, I need reusable prompts, skills, and
 - **FR-002**: The workflow MUST execute from that single entrypoint without requiring manual responses, confirmations, secret entry, or option selection after startup under the stated standard environment.
 - **FR-003**: The workflow MUST derive its plan from the supplied task, repository context, and reusable workflow guidance rather than embedding a ready-made solution for the published task.
 - **FR-004**: The workflow MUST include an explicit task-intake stage that extracts goals, constraints, acceptance expectations, and validation needs from the task brief before implementation begins.
-- **FR-005**: The workflow MUST include a planning stage for non-trivial work that records the intended execution path in repository artifacts that can be inspected in later stages.
+- **FR-005**: The workflow MUST include a planning stage for non-trivial work that records the intended execution path in a lightweight repository-local plan artifact that can be inspected in later stages, and it MAY expand that artifact into richer Spec Kit planning files when the task warrants deeper planning.
 - **FR-006**: The workflow MUST include a dedicated testing guidance asset that tells the solver how to create and run meaningful tests for the changed slice, including edge cases and regression coverage.
-- **FR-007**: The workflow MUST include a distinct code review stage performed by an isolated subagent or equivalent isolated reviewer context so implementation and review are not merged into one unchecked pass.
+- **FR-007**: The workflow MUST include a distinct code review stage performed by an isolated subagent or equivalent isolated reviewer context so implementation and review are not merged into one unchecked pass, and that review MUST classify findings by severity.
 - **FR-008**: The workflow MUST include prompt-authoring guidance that explicitly covers clear task decomposition, requirement coverage, validation order, fallback behavior, and concise final reporting.
 - **FR-009**: The workflow MUST instruct the solver to prefer repository-local evidence, narrow validation, and minimal edits, and it MUST surface when a broader search or fallback path was needed.
 - **FR-010**: The workflow MUST preserve the repository rule that current MCP server functionality is not pre-modified to hide a solution ahead of task execution.
 - **FR-011**: The workflow MUST run the relevant automated checks for the touched slice before presenting the run as complete and MUST report which checks passed, failed, or could not run.
-- **FR-012**: The workflow MUST repair local failures when possible and rerun the focused validation before moving on, rather than accumulating unchecked edits across multiple areas.
+- **FR-011a**: The workflow MUST treat high- and medium-severity review findings as blocking issues that require repair or explicit blocker reporting before completion, while low-severity findings MAY remain as advisory items in the final report.
+- **FR-011b**: The workflow MUST run lightweight changed-slice security checks on every run before completion, and it MUST expand to broader dependency or secret checks when the requested task touches dependencies, credentials, configuration, network access, or other security-sensitive surfaces.
+- **FR-012**: The workflow MUST repair local failures when possible and rerun the focused validation before moving on, rather than accumulating unchecked edits across multiple areas, and it MUST stop and report a blocker after at most 2 repair attempts for the same failing slice.
 - **FR-013**: The workflow MUST tolerate bad intermediate files, partial exploration failures, and unexpected task shapes without failing the entire run unless a concrete blocker prevents safe progress.
 - **FR-014**: The workflow MUST document how its prompts, skills, agents, hooks, and validation steps fit together so a maintainer can update the workflow without reverse-engineering it.
 - **FR-015**: The workflow MUST preserve backward compatibility for all existing MCP tools unless a future task explicitly requires a documented change to those tool contracts.
+- **FR-016**: The workflow MAY use external services, MCP integrations, or network-backed tooling opportunistically, but it MUST retain a repository-local fallback path for core task intake, planning, implementation, validation, and reporting so a run does not depend on a specific external service being available.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -100,7 +113,7 @@ As a maintainer of the repository workflow, I need reusable prompts, skills, and
 
 - **SC-001**: In rehearsal runs using clean repository copies and task briefs in the published format, the workflow can be started with one `/solve` command and reaches a terminal outcome without operator follow-up in at least 95% of runs.
 - **SC-002**: For representative feature tasks that require code changes, 100% of successful runs include validation evidence for the changed slice and an explicit review outcome before the final report.
-- **SC-003**: For representative non-trivial tasks, 100% of successful runs leave behind inspectable planning artifacts that show the intended execution path before or alongside implementation.
+- **SC-003**: For representative non-trivial tasks, 100% of successful runs leave behind an inspectable repository-local planning artifact that shows the intended execution path before or alongside implementation.
 - **SC-004**: Maintainers can identify where task-intake guidance, testing guidance, prompt guidance, and review guidance live in the repository within 5 minutes using only repository documentation and file layout.
 - **SC-005**: The workflow completes the published open task without breaking the existing baseline quality gates that apply to the touched slice.
 
@@ -110,3 +123,4 @@ As a maintainer of the repository workflow, I need reusable prompts, skills, and
 - Task inputs will resemble the provided example by stating context, goals, inputs, outputs, rules, and examples, even when the requested change type differs.
 - The repository may continue to use Spec Kit artifacts as part of the workflow, but the workflow remains responsible for finishing end-to-end task execution rather than stopping after planning.
 - The solution may add or refine workflow assets, documentation, CI checks, and reusable automation, but it must not hide a task-specific implementation in those assets.
+- External network access is available in the standard environment, but individual third-party services or integrations may be unavailable or rate-limited during a run, so core execution cannot depend exclusively on them.
