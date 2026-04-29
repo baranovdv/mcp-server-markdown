@@ -11,11 +11,21 @@ Define the operator-facing contract for the GitHub Copilot workflow entrypoint t
 
 The entrypoint must be implemented as a user-invocable GitHub Copilot skill located at `.github/skills/solve/`.
 
+## Companion Asset Surfaces
+
+- Dedicated testing guidance: `.github/skills/solve-testing/SKILL.md`
+- Isolated reviewer: `.github/agents/solve-review.agent.md`
+- Final reporting contract: `.github/prompts/solve-report.prompt.md`
+- Workflow instructions: `.github/instructions/solve-workflow.instructions.md`
+- Prompt-writing guidance: `.github/instructions/solve-prompting.instructions.md`
+- Hidden-task safety guidance: `.github/instructions/solve-overfitting.instructions.md`
+- Runtime artifact guide: `.solve/README.md`
+
 ## Input Contract
 
-| Field | Type | Required | Description |
-|------|------|----------|-------------|
-| `task-file` | string or attachment reference | Yes | Repository-visible path or attached file containing the task brief |
+| Field       | Type                           | Required | Description                                                        |
+| ----------- | ------------------------------ | -------- | ------------------------------------------------------------------ |
+| `task-file` | string or attachment reference | Yes      | Repository-visible path or attached file containing the task brief |
 
 ## Input Rules
 
@@ -34,18 +44,21 @@ The entrypoint must be implemented as a user-invocable GitHub Copilot skill loca
 7. Treat `high` and `medium` review findings as blocking until repaired or explicitly reported as blockers.
 8. Run lightweight changed-slice security checks on every run and broaden them when the task touches sensitive surfaces.
 9. Produce a final report that summarizes changes, validation evidence, review findings, fallbacks used, and blockers.
+10. Keep reusable guidance task-agnostic so the same workflow can be used for hidden tasks without pre-baked implementation steps.
 
 ## Output Contract
 
 The workflow must leave behind:
 
-| Output | Required | Description |
-|-------|----------|-------------|
-| Repository changes | Yes for successful implementation runs | Source, tests, docs, or workflow assets modified to satisfy the task |
-| `.solve/plans/<run-id>-plan.md` | Yes for non-trivial runs | Lightweight execution plan created before or alongside implementation |
-| `.solve/reports/<run-id>/report.md` | Yes | Human-readable final report |
-| `.solve/reports/<run-id>/review-findings.md` | Yes when review runs | Severity-tagged review output |
-| Validation evidence files | Yes when checks run | Logs or summaries of focused tests, security checks, or final validation |
+| Output                                       | Required                               | Description                                                              |
+| -------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------ |
+| Repository changes                           | Yes for successful implementation runs | Source, tests, docs, or workflow assets modified to satisfy the task     |
+| `.solve/plans/<run-id>-plan.md`              | Yes for non-trivial runs               | Lightweight execution plan created before or alongside implementation    |
+| `.solve/reports/<run-id>/report.md`          | Yes                                    | Human-readable final report                                              |
+| `.solve/reports/<run-id>/review-findings.md` | Yes when review runs                   | Severity-tagged review output                                            |
+| Validation evidence files                    | Yes when checks run                    | Logs or summaries of focused tests, security checks, or final validation |
+
+The final report must explicitly list changed files, focused validation results, security evidence, review outcome, fallbacks used, and blockers.
 
 ## Failure Contract
 

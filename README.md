@@ -91,6 +91,26 @@ Add to user settings or `.vscode/mcp.json`:
 - "What's the frontmatter metadata in this file?"
 - "Give me the table of contents for our architecture docs"
 
+## Copilot `/solve` Workflow
+
+This repository also includes a GitHub Copilot workflow for end-to-end task execution. The entrypoint is `/solve @task/task.md` or `/solve task/task.md`.
+
+### Maintainer Asset Map
+
+- `.github/skills/solve/SKILL.md`: primary task-intake, planning, implementation, validation, and reporting workflow.
+- `.github/skills/solve-testing/SKILL.md`: reusable changed-slice testing guidance.
+- `.github/agents/solve-review.agent.md`: isolated reviewer that classifies findings as `high`, `medium`, `low`, or `none`.
+- `.github/prompts/solve-report.prompt.md`: final reporting contract for changed files, validation evidence, review findings, and blockers.
+- `.github/instructions/`: durable workflow, prompting, and hidden-task safety guidance.
+- `.solve/`: runtime plan and report artifacts for non-trivial runs.
+- `.github/workflows/solve.rehearsal.yml`: static rehearsal checks that keep the workflow assets aligned.
+
+### Compatibility Notes
+
+- The workflow is additive and does not change the published MCP tool contract by itself.
+- Committed assets must stay task-agnostic. They should guide the solver to explore the repository and derive a plan instead of embedding a solution for the open task.
+- Runtime artifacts under `.solve/` are for inspection and rehearsal evidence; generated run output should not be committed.
+
 ## Development
 
 ```bash

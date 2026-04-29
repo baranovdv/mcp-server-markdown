@@ -1,0 +1,39 @@
+name: Solve Rehearsal
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  rehearsal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify solve entrypoint and runtime artifacts
+        run: |
+          test -f .github/skills/solve/SKILL.md
+          test -f .solve/README.md
+          test -d .solve/plans
+          test -d .solve/reports
+          rg -n "/solve @task/task.md|/solve task/task.md" .github/skills/solve/SKILL.md specs/001-agentic-solve-workflow/quickstart.md specs/001-agentic-solve-workflow/contracts/solve-skill-contract.md
+          rg -n "\.solve/plans|\.solve/reports" .github/skills/solve/SKILL.md .github/prompts/solve-report.prompt.md .solve/README.md
+
+      - name: Verify testing, security, and repair-loop guidance
+        run: |
+          test -f .github/skills/solve-testing/SKILL.md
+          rg -n "changed-slice|edge case|regression" .github/skills/solve-testing/SKILL.md .github/skills/solve-testing/references/README.md
+          rg -n "security|repair attempts|2 repair attempts|fallback" .github/skills/solve/SKILL.md .github/prompts/solve-report.prompt.md
+
+      - name: Verify isolated review contract
+        run: |
+          test -f .github/agents/solve-review.agent.md
+          rg -n "high|medium|low|none" .github/agents/solve-review.agent.md .github/prompts/solve-report.prompt.md specs/001-agentic-solve-workflow/contracts/solve-skill-contract.md
+
+      - name: Verify maintainer discovery and hidden-task guidance
+        run: |
+          rg -n "Maintainer Asset Map|Compatibility Notes|/solve" README.md
+          rg -n "hidden-task|fallback|task-agnostic|open task" .github/instructions/solve-overfitting.instructions.md specs/001-agentic-solve-workflow/quickstart.md README.md
