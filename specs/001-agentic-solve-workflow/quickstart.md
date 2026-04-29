@@ -2,7 +2,7 @@
 
 ## Goal
 
-Set up a GitHub Copilot workflow whose primary entrypoint is the slash-invocable `/solve` skill and rehearse it against task files such as `task/task.md` without pre-implementing the open task.
+Set up a GitHub Copilot workflow whose primary entrypoint is the slash-invocable `/solve` skill and rehearse it against any readable task brief file, including files such as `task/task.md`, without pre-implementing the open task.
 
 ## Planned Asset Set
 
@@ -18,7 +18,7 @@ Set up a GitHub Copilot workflow whose primary entrypoint is the slash-invocable
 
 1. Open the repository in GitHub Copilot Chat or Copilot CLI with the new workflow assets present.
 2. Confirm the slash command list exposes `/solve` and the dedicated testing skill.
-3. Run `/solve @task/task.md` or `/solve task/task.md`.
+3. Run `/solve` with a readable task brief file or attachment, for example `/solve @task/task.md`, `/solve task/task.md`, or `/solve @path/to/another-task.md`.
 4. Verify that the workflow performs task intake before editing and captures goal, constraints, acceptance signals, and validation needs.
 5. Verify that the workflow creates a lightweight plan artifact for non-trivial work and keeps operator interaction optional by default.
 6. Confirm the workflow invokes the dedicated testing guidance and the isolated review stage before final completion.
@@ -52,7 +52,7 @@ Set up a GitHub Copilot workflow whose primary entrypoint is the slash-invocable
 
 ## Exit Criteria
 
-- `/solve` is discoverable and starts from a task file argument.
+- `/solve` is discoverable and starts from a readable task brief file or attachment.
 - Non-trivial runs leave a plan artifact and final report in `.solve/`.
 - The workflow uses the separate testing skill and isolated review agent.
 - The final report lists changed files, validation evidence, security evidence, review findings, fallbacks used, and any blockers.

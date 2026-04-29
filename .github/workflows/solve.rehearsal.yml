@@ -19,7 +19,7 @@ jobs:
           test -f .solve/README.md
           test -d .solve/plans
           test -d .solve/reports
-          rg -n "/solve @task/task.md|/solve task/task.md" .github/skills/solve/SKILL.md specs/001-agentic-solve-workflow/quickstart.md specs/001-agentic-solve-workflow/contracts/solve-skill-contract.md
+          rg -n "readable task brief file or attachment|Repository-visible path or attached file|/solve @path/to/another-task.md" .github/skills/solve/SKILL.md specs/001-agentic-solve-workflow/quickstart.md specs/001-agentic-solve-workflow/contracts/solve-skill-contract.md .github/copilot-instructions.md
           rg -n "\.solve/plans|\.solve/reports" .github/skills/solve/SKILL.md .github/prompts/solve-report.prompt.md .solve/README.md
 
       - name: Verify testing, security, and repair-loop guidance

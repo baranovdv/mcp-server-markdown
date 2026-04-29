@@ -6,8 +6,9 @@ Define the operator-facing contract for the GitHub Copilot workflow entrypoint t
 
 ## Invocation
 
-- Primary form: `/solve @task/task.md`
-- Equivalent path form: `/solve task/task.md`
+- Primary form: `/solve @<task-brief-file>`
+- Equivalent path form: `/solve <task-brief-file>`
+- Example forms: `/solve @task/task.md`, `/solve task/task.md`, `/solve @path/to/another-task.md`
 
 The entrypoint must be implemented as a user-invocable GitHub Copilot skill located at `.github/skills/solve/`.
 

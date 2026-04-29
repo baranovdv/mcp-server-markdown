@@ -93,7 +93,7 @@ Add to user settings or `.vscode/mcp.json`:
 
 ## Copilot `/solve` Workflow
 
-This repository also includes a GitHub Copilot workflow for end-to-end task execution. The entrypoint is `/solve @task/task.md` or `/solve task/task.md`.
+This repository also includes a GitHub Copilot workflow for end-to-end task execution. The entrypoint accepts any readable task brief file or attachment after `/solve`, for example `/solve @task/task.md`, `/solve task/task.md`, or `/solve @path/to/another-task.md`.
 
 ### Maintainer Asset Map
 

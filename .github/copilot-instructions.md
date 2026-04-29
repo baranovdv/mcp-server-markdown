@@ -7,7 +7,7 @@ shell commands, and other important information, read specs/001-agentic-solve-wo
 
 ## Solve Workflow
 
-- The task-driven entrypoint lives at `.github/skills/solve/SKILL.md` and is invoked as `/solve @task/task.md` or `/solve task/task.md`.
+- The task-driven entrypoint lives at `.github/skills/solve/SKILL.md` and accepts any readable task brief file or attachment after `/solve`, for example `/solve @task/task.md`, `/solve task/task.md`, or `/solve @path/to/another-task.md`.
 - Keep reusable testing guidance in `.github/skills/solve-testing/SKILL.md`, final reporting guidance in `.github/prompts/solve-report.prompt.md`, and isolated review rules in `.github/agents/solve-review.agent.md`.
 - Use `.github/instructions/solve-workflow.instructions.md`, `.github/instructions/solve-prompting.instructions.md`, and `.github/instructions/solve-overfitting.instructions.md` for stage flow, prompt-writing, fallback behavior, and hidden-task safety.
 - Preserve the current read-only MCP server behavior unless an actual `/solve` run validates a requested change. Do not hide a ready-made solution for `task/task.md` or any hidden task in committed assets.

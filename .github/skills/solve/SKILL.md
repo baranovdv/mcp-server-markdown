@@ -1,11 +1,11 @@
 ---
 name: solve
-description: Execute a repository task brief end to end through intake, planning, implementation, testing, review, validation, and reporting.
+description: Execute any supplied repository task brief or attachment end to end through intake, planning, implementation, testing, review, validation, and reporting.
 ---
 
 # Solve
 
-Use this skill when the operator invokes `/solve @task/task.md` or `/solve task/task.md`.
+Use this skill when the operator invokes `/solve` with a readable task brief file or attachment, for example `/solve @task/task.md`, `/solve task/task.md`, or `/solve @path/to/another-task.md`.
 
 ## Goal
 
