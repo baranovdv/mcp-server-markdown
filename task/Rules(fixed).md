@@ -1,5 +1,7 @@
 # Hackathon Rules
+
 ## Introduction
+
 ## 1. About the Hackathon
 
 Participants receive a repository with the MCP server code and configure an agentic workflow and its environment, not just a single AI agent. An orchestrator slash command is launched in the workflow, and tasks for implementing new features in this product are passed to it. The goal is not to implement the functionality themselves, but to ensure that the agentic workflow performs it reliably and efficiently.
@@ -17,6 +19,7 @@ Along with this file, the participant receives a task.md, an open task. It requi
 During the test run, organizers open the GitHub Copilot CLI and submit the task using the command /solve @task.md . The entry point is running the Solve orchestrator command: after this, the workflow must autonomously execute and implement all required end-to-end functionality. In addition to the open task, there is a hidden task—in the same format, but not necessarily with the same change type. This task is used to test how the workflow handles new conditions without prior customization.
 
 ## 3. What needs to be submitted
+
 Participants submit their GitHub repository—a fork or copy of the original. The repository can be public or private. If you're concerned about others snooping on your solution, create a private repository and add organizers as collaborators.
 
 The repository must have an agentic workflow configured, but the source code must remain unchanged: you cannot pre-implement a public or private task, nor refactor the server source code to make the workflow more convenient.
@@ -26,6 +29,7 @@ To complete the task, use the latest LTS version of Node.js, pnpm, and standard 
 A mandatory requirement: the entry point is to run the orchestrator with the command `/solve @task.md`.
 
 ## 4. Rules
+
 ### What you can do
 
 - Add agent instructions: `AGENTS.md`, `.github/copilot-instructions.md`, path-specific instructions in `.github/instructions/`, prompts, and rules.
@@ -51,6 +55,7 @@ Manual actions after startup include any assistance to the agent after the start
 The official runtime environment is GitHub Copilot CLI on Linux x64. Tasks are submitted by the organizers using the command `/solve @task.md`. To run the task, use the latest LTS version of Node.js, pnpm, and standard environment conditions (including internet access).
 
 ## 5. Evaluation Criteria
+
 ### How the evaluation is conducted
 
 The agent is run **three times on an open task** and **three times on a hidden task**—each time from a clean copy of the submitted repository. The best run for each task is scored separately.
@@ -61,14 +66,15 @@ A separate score for autonomy and stability takes into account how smoothly the 
 
 ### Main evaluation categories
 
-| Category | Impact | What is assessed |
-|---|---|---|
-| Correctness for open task | Medium | Did the agent implement the task correctly: does the tool work, is it registered correctly in the MCP, do the test cases pass? |
-| Correctness for hidden task | High | The same, but for a task that participants did not see in advance |
-| Reliability in unexpected situations | Medium | How does the agent handle incorrect data, corrupted files, large volumes, and other edge cases?
-| No Regressions | Medium | Did the agent break anything that already worked in the original product? |
-| Quality of Final Changes | Low | Readability, Accuracy, and Conformance to the Project Style |
-| Autonomy and Stability | Low | Does the agent work without operator intervention and consistently produce good results across all three runs?
+| Category                             | Impact | What is assessed                                                                                                               |
+| ------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Correctness for open task            | Medium | Did the agent implement the task correctly: does the tool work, is it registered correctly in the MCP, do the test cases pass? |
+| Correctness for hidden task          | High   | The same, but for a task that participants did not see in advance                                                              |
+| Reliability in unexpected situations | Medium | How does the agent handle incorrect data, corrupted files, large volumes, and other edge cases?                                |
+| No Regressions                       | Medium | Did the agent break anything that already worked in the original product?                                                      |
+| Quality of Final Changes             | Low    | Readability, Accuracy, and Conformance to the Project Style                                                                    |
+| Autonomy and Stability               | Low    | Does the agent work without operator intervention and consistently produce good results across all three runs?                 |
+
 ### Bonus Categories
 
 Bonuses are cumulative with the base score.
@@ -81,13 +87,13 @@ Even if the main pipeline doesn't work as planned or isn't fully implemented, bo
 
 Bonus points are also awarded for a high-quality attempt.
 
-| Category | Impact | What is assessed |
-|---|---|---|
-| Agent and work environment setup | Medium | How well prepared are the instructions, automation, and environment in which the agent operates |
-| Testing quality | Medium | Meaningful tests added by the agent: unit tests, integration tests, edge cases—anything that actually verifies the code's functionality |
-| Spec-driven workflow | Low | Presence of a specification, plan, and the relationship between them. The use of ready-made frameworks is encouraged, but not limited to BMAD, SPEC Kit, OpenSpec, and similar ones. |
-| Security checks and defensive checks | Low | Explicit security checks built into the workflow |
-| Independent code review | Low | Code review as one of the agent's work stages—a verification process that actually took place during the task execution |
-| Documentation for Humans | Low | Clear description of startup, architecture, and examples |
-| CI and automated quality checks | Low | Configured checks that actually run |
-| Model Selection and Use | Low | A meaningful model selection strategy that has been used in practice, and efficient use of premium models |
+| Category                             | Impact | What is assessed                                                                                                                                                                     |
+| ------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Agent and work environment setup     | Medium | How well prepared are the instructions, automation, and environment in which the agent operates                                                                                      |
+| Testing quality                      | Medium | Meaningful tests added by the agent: unit tests, integration tests, edge cases—anything that actually verifies the code's functionality                                              |
+| Spec-driven workflow                 | Low    | Presence of a specification, plan, and the relationship between them. The use of ready-made frameworks is encouraged, but not limited to BMAD, SPEC Kit, OpenSpec, and similar ones. |
+| Security checks and defensive checks | Low    | Explicit security checks built into the workflow                                                                                                                                     |
+| Independent code review              | Low    | Code review as one of the agent's work stages—a verification process that actually took place during the task execution                                                              |
+| Documentation for Humans             | Low    | Clear description of startup, architecture, and examples                                                                                                                             |
+| CI and automated quality checks      | Low    | Configured checks that actually run                                                                                                                                                  |
+| Model Selection and Use              | Low    | A meaningful model selection strategy that has been used in practice, and efficient use of premium models                                                                            |

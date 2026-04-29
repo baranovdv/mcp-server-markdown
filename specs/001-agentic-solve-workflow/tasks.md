@@ -1,5 +1,4 @@
 ---
-
 description: "Implementation tasks for the agentic solve workflow feature"
 ---
 
@@ -16,9 +15,9 @@ description: "Implementation tasks for the agentic solve workflow feature"
 
 **Purpose**: Create the repository surfaces that the workflow assets will occupy.
 
-- [ ] T001 Create workflow directory scaffolding in `.github/skills/solve/`, `.github/skills/solve-testing/`, `.github/instructions/`, `.solve/plans/`, and `.solve/reports/`
-- [ ] T002 Create placeholder asset files in `.github/skills/solve/references/README.md`, `.github/skills/solve/assets/.gitkeep`, `.github/skills/solve-testing/references/README.md`, and `.github/skills/solve-testing/assets/.gitkeep`
-- [ ] T003 [P] Create a runtime artifact guide in `.solve/README.md`
+- [x] T001 Create workflow directory scaffolding in `.github/skills/solve/`, `.github/skills/solve-testing/`, `.github/instructions/`, `.solve/plans/`, and `.solve/reports/`
+- [x] T002 Create placeholder asset files in `.github/skills/solve/references/README.md`, `.github/skills/solve/assets/.gitkeep`, `.github/skills/solve-testing/references/README.md`, and `.github/skills/solve-testing/assets/.gitkeep`
+- [x] T003 [P] Create a runtime artifact guide in `.solve/README.md`
 
 ---
 
@@ -28,9 +27,9 @@ description: "Implementation tasks for the agentic solve workflow feature"
 
 **⚠️ CRITICAL**: No user story work should start before this phase is complete.
 
-- [ ] T004 Create the shared final report prompt in `.github/prompts/solve-report.prompt.md`
-- [ ] T005 [P] Update `.github/copilot-instructions.md` with additive `/solve` workflow constraints and references to reusable assets
-- [ ] T006 [P] Add maintainer-facing workflow overview and compatibility notes to `README.md`
+- [x] T004 Create the shared final report prompt in `.github/prompts/solve-report.prompt.md`
+- [x] T005 [P] Update `.github/copilot-instructions.md` with additive `/solve` workflow constraints and references to reusable assets
+- [x] T006 [P] Add maintainer-facing workflow overview and compatibility notes to `README.md`
 
 **Checkpoint**: Shared workflow surfaces exist and all user-story work can proceed.
 
@@ -44,15 +43,15 @@ description: "Implementation tasks for the agentic solve workflow feature"
 
 ### Tests for User Story 1
 
-- [ ] T007 [P] [US1] Add one-command rehearsal coverage for `/solve @task/task.md` to `.github/workflows/solve.rehearsal.yml`
-- [ ] T008 [P] [US1] Add operator rehearsal steps and expected intake/report outcomes to `specs/001-agentic-solve-workflow/quickstart.md`
+- [x] T007 [P] [US1] Add one-command rehearsal coverage for `/solve @task/task.md` to `.github/workflows/solve.rehearsal.yml`
+- [x] T008 [P] [US1] Add operator rehearsal steps and expected intake/report outcomes to `specs/001-agentic-solve-workflow/quickstart.md`
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Implement the `/solve` entrypoint skill in `.github/skills/solve/SKILL.md`
-- [ ] T010 [P] [US1] Add task-intake and planning reference material in `.github/skills/solve/references/README.md`
-- [ ] T011 [P] [US1] Add reusable intake and plan artifact placeholders in `.github/skills/solve/assets/intake-template.md` and `.github/skills/solve/assets/plan-template.md`
-- [ ] T012 [US1] Wire final reporting expectations for plan artifacts, changed files, and blockers into `.github/prompts/solve-report.prompt.md`
+- [x] T009 [US1] Implement the `/solve` entrypoint skill in `.github/skills/solve/SKILL.md`
+- [x] T010 [P] [US1] Add task-intake and planning reference material in `.github/skills/solve/references/README.md`
+- [x] T011 [P] [US1] Add reusable intake and plan artifact placeholders in `.github/skills/solve/assets/intake-template.md` and `.github/skills/solve/assets/plan-template.md`
+- [x] T012 [US1] Wire final reporting expectations for plan artifacts, changed files, and blockers into `.github/prompts/solve-report.prompt.md`
 
 **Checkpoint**: `/solve` can be invoked from a task file and leaves the user with clear intake, planning, and reporting guidance.
 
@@ -66,15 +65,15 @@ description: "Implementation tasks for the agentic solve workflow feature"
 
 ### Tests for User Story 2
 
-- [ ] T013 [P] [US2] Add validation, repair-loop, and review rehearsal assertions to `.github/workflows/solve.rehearsal.yml`
-- [ ] T014 [P] [US2] Add focused validation and blocker-report scenarios to `specs/001-agentic-solve-workflow/quickstart.md`
+- [x] T013 [P] [US2] Add validation, repair-loop, and review rehearsal assertions to `.github/workflows/solve.rehearsal.yml`
+- [x] T014 [P] [US2] Add focused validation and blocker-report scenarios to `specs/001-agentic-solve-workflow/quickstart.md`
 
 ### Implementation for User Story 2
 
-- [ ] T015 [P] [US2] Create the reusable testing guidance skill in `.github/skills/solve-testing/SKILL.md`
-- [ ] T016 [P] [US2] Create the isolated reviewer in `.github/agents/solve-review.agent.md`
-- [ ] T017 [US2] Extend `.github/skills/solve/SKILL.md` with changed-slice validation order, lightweight security checks, and up-to-2 repair-loop rules
-- [ ] T018 [US2] Extend `.github/prompts/solve-report.prompt.md` with severity-tagged review findings and validation evidence requirements
+- [x] T015 [P] [US2] Create the reusable testing guidance skill in `.github/skills/solve-testing/SKILL.md`
+- [x] T016 [P] [US2] Create the isolated reviewer in `.github/agents/solve-review.agent.md`
+- [x] T017 [US2] Extend `.github/skills/solve/SKILL.md` with changed-slice validation order, lightweight security checks, and up-to-2 repair-loop rules
+- [x] T018 [US2] Extend `.github/prompts/solve-report.prompt.md` with severity-tagged review findings and validation evidence requirements
 
 **Checkpoint**: The workflow can validate and review its own changes and will not present high- or medium-severity issues as a success.
 
@@ -88,15 +87,15 @@ description: "Implementation tasks for the agentic solve workflow feature"
 
 ### Tests for User Story 3
 
-- [ ] T019 [P] [US3] Add hidden-task rehearsal and fallback checks to `specs/001-agentic-solve-workflow/quickstart.md`
-- [ ] T020 [P] [US3] Add maintainer discovery guidance for workflow assets to `README.md`
+- [x] T019 [P] [US3] Add hidden-task rehearsal and fallback checks to `specs/001-agentic-solve-workflow/quickstart.md`
+- [x] T020 [P] [US3] Add maintainer discovery guidance for workflow assets to `README.md`
 
 ### Implementation for User Story 3
 
-- [ ] T021 [P] [US3] Create stage-by-stage workflow guidance in `.github/instructions/solve-workflow.instructions.md`
-- [ ] T022 [P] [US3] Create prompt-authoring best practices in `.github/instructions/solve-prompting.instructions.md`
-- [ ] T023 [P] [US3] Create hidden-task and anti-overfitting guidance in `.github/instructions/solve-overfitting.instructions.md`
-- [ ] T024 [US3] Update `.github/copilot-instructions.md` so the new instructions, testing skill, and review agent are discoverable from the main repository guidance
+- [x] T021 [P] [US3] Create stage-by-stage workflow guidance in `.github/instructions/solve-workflow.instructions.md`
+- [x] T022 [P] [US3] Create prompt-authoring best practices in `.github/instructions/solve-prompting.instructions.md`
+- [x] T023 [P] [US3] Create hidden-task and anti-overfitting guidance in `.github/instructions/solve-overfitting.instructions.md`
+- [x] T024 [US3] Update `.github/copilot-instructions.md` so the new instructions, testing skill, and review agent are discoverable from the main repository guidance
 
 **Checkpoint**: Maintainers can understand and extend the `/solve` workflow without reverse-engineering the entrypoint skill.
 
@@ -106,13 +105,13 @@ description: "Implementation tasks for the agentic solve workflow feature"
 
 **Purpose**: Finish cross-story documentation, rehearsal wiring, and required validation.
 
-- [ ] T025 [P] Cross-link workflow assets in `.github/skills/solve/references/README.md` and `.github/skills/solve-testing/references/README.md`
-- [ ] T026 [P] Document runtime artifact naming and retention expectations in `.solve/README.md`
-- [ ] T027 Reconcile `specs/001-agentic-solve-workflow/contracts/solve-skill-contract.md` with the implemented `/solve` asset surfaces and report outputs
-- [ ] T028 Run `npm test`
-- [ ] T029 Run `npm run typecheck`
-- [ ] T030 Run `npm run lint`
-- [ ] T031 Run `npm run build`
+- [x] T025 [P] Cross-link workflow assets in `.github/skills/solve/references/README.md` and `.github/skills/solve-testing/references/README.md`
+- [x] T026 [P] Document runtime artifact naming and retention expectations in `.solve/README.md`
+- [x] T027 Reconcile `specs/001-agentic-solve-workflow/contracts/solve-skill-contract.md` with the implemented `/solve` asset surfaces and report outputs
+- [x] T028 Run `npm test`
+- [x] T029 Run `npm run typecheck`
+- [x] T030 Run `npm run lint`
+- [x] T031 Run `npm run build`
 
 ---
 

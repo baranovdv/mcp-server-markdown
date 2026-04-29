@@ -15,7 +15,7 @@
 - Q: What planning artifact must the workflow leave behind for a non-trivial run? → A: A lightweight repository-local plan artifact is required for every non-trivial run, and the workflow may expand it into richer Spec Kit artifacts when deeper planning is warranted.
 - Q: May the workflow rely on external services or integrations to complete core task execution? → A: External services may be used opportunistically, but core task execution must have a repository-local fallback path.
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - One-Command Task Execution (Priority: P1)
 
@@ -69,14 +69,14 @@ As a maintainer of the repository workflow, I need reusable prompts, skills, and
 - The workflow finds unrelated dirty files or generated artifacts in the repository and must avoid reverting or corrupting them while continuing the requested work.
 - The task cannot be completed fully because of a real repository or environment blocker, and the workflow must stop with a precise blocker report rather than pretending success.
 
-## Compatibility & Safety Constraints *(mandatory)*
+## Compatibility & Safety Constraints _(mandatory)_
 
 - **Read-Only Impact**: Existing markdown-facing MCP capabilities remain read-only; the workflow customization itself may add or update repository automation assets, but it must not introduce pre-shipped write-capable document tools or mutate repository source before `/solve` is run for an actual task.
 - **Existing Tool Contract Impact**: None for the current MCP server tools; the new capability is an additive workflow entrypoint and supporting automation around the repository.
 - **Additive vs. Breaking Change**: Additive, because the feature introduces orchestration guidance, review stages, and validation assets without changing the public contract of existing markdown tools.
 - **Required Compatibility Safeguards**: Preserve the current read-only MCP server behavior; do not pre-implement the published or hidden task in source files; require changed-slice automated checks before completion; keep operator interaction optional by defaulting to autonomous execution; document the workflow surfaces so future maintainers can extend them without breaking `/solve`.
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
@@ -99,7 +99,7 @@ As a maintainer of the repository workflow, I need reusable prompts, skills, and
 - **FR-015**: The workflow MUST preserve backward compatibility for all existing MCP tools unless a future task explicitly requires a documented change to those tool contracts.
 - **FR-016**: The workflow MAY use external services, MCP integrations, or network-backed tooling opportunistically, but it MUST retain a repository-local fallback path for core task intake, planning, implementation, validation, and reporting so a run does not depend on a specific external service being available.
 
-### Key Entities *(include if feature involves data)*
+### Key Entities _(include if feature involves data)_
 
 - **Task Brief**: The operator-supplied task attachment that defines the requested change, constraints, examples, and success expectations for a run.
 - **Solve Workflow**: The end-to-end orchestration path triggered by `/solve`, including intake, planning, implementation, testing, review, and final reporting.
@@ -107,7 +107,7 @@ As a maintainer of the repository workflow, I need reusable prompts, skills, and
 - **Review Finding**: A structured result from the independent review stage identifying a defect, risk, regression concern, or explicit no-finding outcome.
 - **Validation Evidence**: The recorded outcome of tests, linting, type checks, or other focused checks run to support the solver's completion decision.
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 

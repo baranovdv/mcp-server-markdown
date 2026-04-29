@@ -23,7 +23,7 @@ Add a user-invocable GitHub Copilot skill at `.github/skills/solve/` so operator
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 - Read-only guarantee preserved: PASS. The plan adds `.github/` workflow assets, `specs/` design docs, and `.solve/` runtime evidence only; it does not pre-ship write-capable markdown behavior or mutate repository source before `/solve` runs.
 - MCP compatibility defined: PASS. Existing MCP tools (`list_files`, `search_docs`, `get_section`, `list_headings`, `find_code_blocks`, `get_frontmatter`) stay unchanged; `/solve` is an additive Copilot workflow entrypoint rather than a server contract change.
