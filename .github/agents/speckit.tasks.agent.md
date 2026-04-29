@@ -69,6 +69,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - If contracts/ exists: Map interface contracts to user stories
    - If research.md exists: Extract decisions for setup tasks
    - Generate tasks organized by user story (see Task Generation Rules below)
+  - Include docs and validation tasks required by the constitution
    - Generate dependency graph showing user story completion order
    - Create parallel execution examples per user story
    - Validate task completeness (each user story has all needed tasks, independently testable)
@@ -78,8 +79,8 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Phase 1: Setup tasks (project initialization)
    - Phase 2: Foundational tasks (blocking prerequisites for all user stories)
    - Phase 3+: One phase per user story (in priority order from spec.md)
-   - Each phase includes: story goal, independent test criteria, tests (if requested), implementation tasks
-   - Final Phase: Polish & cross-cutting concerns
+  - Each phase includes: story goal, independent test criteria, tests (when constitutionally required), implementation tasks
+  - Final Phase: Polish & cross-cutting concerns, including validation commands when the touched slice can exercise them
    - All tasks must follow the strict checklist format (see Task Generation Rules below)
    - Clear file paths for each task
    - Dependencies section showing story completion order
@@ -131,7 +132,16 @@ The tasks.md should be immediately executable - each task must be specific enoug
 
 **CRITICAL**: Tasks MUST be organized by user story to enable independent implementation and testing.
 
-**Tests are OPTIONAL**: Only generate test tasks if explicitly requested in the feature specification or if user requests TDD approach.
+**Tests are conditionally REQUIRED**: Generate test tasks whenever the feature changes
+user-visible behavior, tool contracts, parsing, extraction, path handling, or
+compatibility guarantees. Test tasks may be omitted only for strictly
+documentation-only or non-behavioral work.
+
+**Constitution Alignment**:
+
+- Tasks MUST preserve the read-only guarantee unless the spec explicitly documents a constitution-approved breaking change.
+- Tasks MUST identify affected MCP tool contracts and include compatibility or migration work when existing tools change.
+- Tasks MUST schedule docs updates when behavior or tool surfaces change.
 
 ### Checklist Format (REQUIRED)
 
@@ -173,12 +183,12 @@ Every task MUST strictly follow this format:
      - Models needed for that story
      - Services needed for that story
      - Interfaces/UI needed for that story
-     - If tests requested: Tests specific to that story
+     - If behavior changes: Tests specific to that story
    - Mark story dependencies (most stories should be independent)
 
 2. **From Contracts**:
    - Map each interface contract → to the user story it serves
-   - If tests requested: Each interface contract → contract test task [P] before implementation in that story's phase
+   - If behavior changes: Each interface contract → contract test task [P] before implementation in that story's phase
 
 3. **From Data Model**:
    - Map each entity to the user story(ies) that need it
@@ -195,6 +205,6 @@ Every task MUST strictly follow this format:
 - **Phase 1**: Setup (project initialization)
 - **Phase 2**: Foundational (blocking prerequisites - MUST complete before user stories)
 - **Phase 3+**: User Stories in priority order (P1, P2, P3...)
-  - Within each story: Tests (if requested) → Models → Services → Endpoints → Integration
+  - Within each story: Tests (when required) → Models → Services → Endpoints → Integration
   - Each phase should be a complete, independently testable increment
 - **Final Phase**: Polish & Cross-Cutting Concerns

@@ -124,15 +124,18 @@ Given that feature description, do this:
        - Prioritize clarifications by impact: scope > security/privacy > user experience > technical details
     4. Fill User Scenarios & Testing section
        If no clear user flow: ERROR "Cannot determine user scenarios"
-    5. Generate Functional Requirements
+    5. Fill Compatibility & Safety Constraints section
+       State read-only impact, affected MCP tools, additive vs. breaking status,
+       and required compatibility safeguards from the constitution
+    6. Generate Functional Requirements
        Each requirement must be testable
        Use reasonable defaults for unspecified details (document assumptions in Assumptions section)
-    6. Define Success Criteria
+    7. Define Success Criteria
        Create measurable, technology-agnostic outcomes
        Include both quantitative metrics (time, performance, volume) and qualitative measures (user satisfaction, task completion)
        Each criterion must be verifiable without implementation details
-    7. Identify Key Entities (if data involved)
-    8. Return: SUCCESS (spec ready for planning)
+    8. Identify Key Entities (if data involved)
+    9. Return: SUCCESS (spec ready for planning)
 
 6. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) while preserving section order and headings.
 
@@ -274,7 +277,7 @@ Given that feature description, do this:
 
 ### Section Requirements
 
-- **Mandatory sections**: Must be completed for every feature
+- **Mandatory sections**: Must be completed for every feature, including Compatibility & Safety Constraints
 - **Optional sections**: Include only when relevant to the feature
 - When a section doesn't apply, remove it entirely (don't leave as "N/A")
 

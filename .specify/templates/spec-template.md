@@ -75,6 +75,18 @@
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
 
+## Compatibility & Safety Constraints *(mandatory)*
+
+<!--
+  ACTION REQUIRED: Capture constitution-driven constraints that future planning
+  and implementation must preserve.
+-->
+
+- **Read-Only Impact**: [State whether the feature remains strictly read-only with respect to user markdown and source content]
+- **Existing Tool Contract Impact**: [List existing MCP tools affected, or state "None"]
+- **Additive vs. Breaking Change**: [State whether behavior is additive or breaking and why]
+- **Required Compatibility Safeguards**: [List tests, docs updates, migration notes, or explicit non-goals needed to preserve current behavior]
+
 ## Requirements *(mandatory)*
 
 <!--

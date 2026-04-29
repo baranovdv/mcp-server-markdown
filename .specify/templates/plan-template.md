@@ -31,7 +31,16 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Read-only guarantee preserved: confirm the feature does not mutate user markdown,
+  source files, or other repository content during normal tool execution.
+- MCP compatibility defined: list affected existing tools, note whether the change is
+  additive or breaking, and document any migration or versioning implications.
+- Test coverage planned: identify the Vitest cases required to fail before
+  implementation and pass after it for all changed parsing or extraction behavior.
+- TypeScript and dependency discipline preserved: justify any new dependency or
+  abstraction that cannot be satisfied by the current stack.
+- Validation commands scoped: list the commands that will validate the touched slice,
+  including `npm test`, `npm run typecheck`, and `npm run lint` when applicable.
 
 ## Project Structure
 
