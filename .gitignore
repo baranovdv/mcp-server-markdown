@@ -1,5 +1,12 @@
 node_modules/
 dist/
+build/
 coverage/
 *.tsbuildinfo
+*.log
+.env*
+.solve/plans/*
+!.solve/plans/.gitkeep
+.solve/reports/*
+!.solve/reports/.gitkeep
 .DS_Store

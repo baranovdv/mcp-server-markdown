@@ -6,6 +6,12 @@ export default tseslint.config(
   ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,
   {
-    ignores: ["dist/", "coverage/"],
+    ignores: [
+      "dist/",
+      "build/",
+      "coverage/",
+      ".solve/plans/",
+      ".solve/reports/",
+    ],
   },
 );
