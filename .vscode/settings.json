@@ -11,17 +11,12 @@
 		".specify/scripts/powershell/": true,
 		"node": true,
 		"npm": true,
+    "npx": true,
 		"pnpm": true,
 		"ls": true,
 		"cat": true,
 		"sed": true,
 		"awk": true,
-		"find": true,
-		"npm test": true,
-		"npm run typecheck": true,
-		"npm run lint": true,
-		"npm run build": true,
-		"npx prettier --write": true,
-		"npx prettier --write specs/001-agentic-solve-workflow/tasks.md && npm run lint": true
+		"find": true
 	}
 }
