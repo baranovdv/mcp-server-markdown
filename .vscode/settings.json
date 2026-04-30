@@ -12,7 +12,6 @@
 		"node": true,
 		"npm": true,
 		"pnpm": true,
-		"git": true,
 		"ls": true,
 		"cat": true,
 		"sed": true,

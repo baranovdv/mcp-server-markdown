@@ -18,7 +18,7 @@ Complete the requested task from a single command without operator follow-up whi
 - Prefer the smallest validated edit slice that can satisfy the next acceptance signal.
 - When the task adds or changes a named tool, endpoint, command, or other public entrypoint, treat the owning integration or wiring surface as a required slice, not an optional follow-up.
 - Keep operator interaction optional by default. If a safe repository-local next step exists, take it.
-- Do not use `git stash`, `git checkout`, `git restore`, or similar revert-style commands to inspect baseline state or pre-existing issues.
+- Do not use any git commands under any circumstances. Use repository-local inspection and comparison of file contents instead.
 - Use the dedicated testing skill instead of burying all testing logic in this file.
 - Run lightweight changed-slice security checks on every run.
 - Perform isolated review before completion and treat `high` and `medium` findings as blocking.

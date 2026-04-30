@@ -17,7 +17,7 @@
 - Keep each change narrowly tied to a task requirement or acceptance signal.
 - During intake and planning, extract both the behavior slice and the owning integration surface for any named tool, endpoint, command, or other public entrypoint.
 - When a step fails, repair the same slice first instead of opening new surfaces.
-- Never mutate git state just to inspect baseline behavior. Avoid `git stash`, `git checkout`, `git restore`, and similar commands unless the task explicitly requires them.
+- Do not use any git commands under any circumstances. Use repository-local inspection and file comparison instead.
 - Use repository-local fallback paths when a subagent, integration, or heuristic path fails.
 - Surface blockers precisely rather than broadening speculation.
 
