@@ -60,10 +60,10 @@ Complete the requested task from a single command without operator follow-up whi
    - Prefer this order unless the repository provides a better slice-specific check:
      1. changed-slice tests
    2. focused public-entrypoint validation for any added or changed tool, endpoint, or command
-     2. narrow typecheck, lint, or build step for the touched slice
-     3. lightweight changed-slice security checks
-     4. isolated review
-     5. broad repository validation before completion
+   3. narrow typecheck, lint, or build step for the touched slice
+   4. lightweight changed-slice security checks
+   5. isolated review
+   6. broad repository validation before completion
 8. `Repair locally when possible`
    - If a focused check or review exposes a local, repairable issue, fix the same slice and rerun the same focused validation.
    - After 2 repair attempts for the same slice, convert the issue into a blocker.
